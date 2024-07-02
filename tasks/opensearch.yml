@@ -1,0 +1,29 @@
+---
+- name: OpenSearch Install | Install via package manager
+  ansible.builtin.dnf:
+    name: opensearch
+    state: present
+    enablerepo: "{{ opencast_repository_identifiers }}"
+    update_cache: true
+
+- name: OpenSearch Install | Copy Configuration File
+  notify: Restart opensearch
+  ansible.builtin.blockinfile:
+    block: "{{ lookup('template', 'templates/opensearch.yml') }}"
+    dest: /etc/opensearch/opensearch.yml
+    state: present
+    create: true
+    marker: "## {mark} opensearch main configuration ##"
+    owner: "opensearch"
+    group: "opensearch"
+    mode: 0600
+
+- name: OpenSearch Install | Adjust heap size
+  notify: Restart opensearch
+  ansible.builtin.replace:
+    path: /etc/opensearch/jvm.options
+    regexp: '^-{{ item }}.*'
+    replace: '-{{ item }}{{ opencast_opensearch_heap_size }}'
+  loop:
+    - Xms
+    - Xmx
