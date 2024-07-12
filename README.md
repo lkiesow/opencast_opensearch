@@ -10,8 +10,7 @@ This role supports the following,
 - Disables the OpenSearch security plugin completely. Use a reverse
   proxy to secure OpenSearch with HTTP Basic Auth and TLS.
 
-Role Variables
---------------
+## Role Variables
 
 - `opencast_repository_identifiers`
   - List of repository identifiers to temporarily activate for integration
@@ -24,14 +23,11 @@ Role Variables
 - `opensearch_api_port`
   - Defaults to `9200`.
 
-Dependencies
-------------
+## Dependencies
 
 This role requires `elan.opencast_repository`.
 
-
-Example Playbook
-----------------
+## Example Playbook
 
 Example of how to configure and use the role:
 
@@ -42,3 +38,9 @@ Example of how to configure and use the role:
     - role: elan.opencast_repository
     - role: elan.opencast_opensearch
 ```
+
+## License
+[BSD-3-Clause](LICENSE)
+
+## Author
+[ELAN e.V.](https://elan-ev.de)
