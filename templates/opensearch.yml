@@ -1,4 +1,3 @@
----
 cluster.name: "opensearch-cluster"
 node.name: "{{ inventory_hostname }}"
 network.host: "{{ opensearch_api_host }}"
