@@ -38,6 +38,10 @@ jobs:
         working-directory: .test
         run: ansible-playbook -i test, test.yml
 
+      - name: deploy opensearch again
+        working-directory: .test
+        run: ansible-playbook -i test, test.yml
+
       - name: test that opensearch is running
         run: >
           curl --fail --silent
